@@ -45,6 +45,16 @@ Si en algún momento querés el render oficial de HyperFrames en la nube de HeyG
 (`hyperframes cloud render`, más rápido y con 4K/alpha), hace falta una cuenta HeyGen y un
 `HEYGEN_API_KEY` como secret del repo. El flujo de GitHub Actions actual no lo necesita.
 
+## Ficha del video
+
+- **Producto:** exprimidor de limones USA MILER, modelo 20205M, 200 W, 110 V / 60 Hz, 20 piezas por minuto.
+- **Formato:** 1080 × 1920 (vertical), 15 s, 30 fps.
+- **Edición:** fondo blanco, cinco fotos del producto con zoom lento (Ken Burns) y corte seco, como el video de referencia.
+- **Música:** "Wallpaper" de Kevin MacLeod (incompetech.com), licencia
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Requiere dar crédito: agregá
+  `Música: Kevin MacLeod — incompetech.com (CC BY 4.0)` en la descripción de la publicación.
+  Para cambiar la pista, reemplazá `assets/audio/bed.mp3` manteniendo 15 s de duración.
+
 ## Estructura
 
 ```

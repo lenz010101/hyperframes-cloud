@@ -2,4 +2,8 @@ node_modules/
 .hyperframes/
 out/
 renders/
+review/
+tmp/
+beats/
+check.json
 .DS_Store
