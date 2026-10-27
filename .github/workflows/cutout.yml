@@ -40,6 +40,9 @@ jobs:
           path: ~/.cache/hyperframes
           key: hf-models-v1
 
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
       - name: Cut out
         shell: bash
         run: |
