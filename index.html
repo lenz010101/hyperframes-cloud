@@ -97,20 +97,17 @@
       data-height="1920"
     >
       <div id="stage">
-        <div id="shot-1" class="clip" data-start="0" data-duration="3" data-track-index="0">
+        <div id="shot-1" class="clip" data-start="0" data-duration="3.75" data-track-index="0">
           <div class="shot"><img id="img-1" src="assets/img/02.jpg" alt="Exprimidor USA MILER de perfil, con la marca y el interruptor" style="object-position: 50% 46%" /></div>
         </div>
-        <div id="shot-2" class="clip" data-start="3" data-duration="3" data-track-index="0">
+        <div id="shot-2" class="clip" data-start="3.75" data-duration="3.75" data-track-index="0">
           <div class="shot"><img id="img-2" src="assets/img/04.jpg" alt="Detalle de la canasta y las copas naranjas" style="object-position: 50% 40%" /></div>
         </div>
-        <div id="shot-3" class="clip" data-start="6" data-duration="3" data-track-index="0">
-          <div class="shot"><img id="img-3" src="assets/img/05.jpg" alt="Placa de especificaciones del modelo 20205M" style="object-position: 50% 48%" /></div>
+        <div id="shot-3" class="clip" data-start="7.5" data-duration="3.75" data-track-index="0">
+          <div class="shot"><img id="img-3" src="assets/img/03.jpg" alt="Dos exprimidores sobre la mesa" style="object-position: 50% 42%" /></div>
         </div>
-        <div id="shot-4" class="clip" data-start="9" data-duration="3" data-track-index="0">
-          <div class="shot"><img id="img-4" src="assets/img/03.jpg" alt="Dos exprimidores sobre la mesa" style="object-position: 50% 42%" /></div>
-        </div>
-        <div id="shot-5" class="clip" data-start="12" data-duration="3" data-track-index="0">
-          <div class="shot"><img id="img-5" src="assets/img/01.jpg" alt="Exprimidor USA MILER de frente" style="object-position: 50% 46%" /></div>
+        <div id="shot-4" class="clip" data-start="11.25" data-duration="3.75" data-track-index="0">
+          <div class="shot"><img id="img-4" src="assets/img/01.jpg" alt="Exprimidor USA MILER de frente" style="object-position: 50% 46%" /></div>
         </div>
 
         <div id="label" class="clip" data-start="0" data-duration="15" data-track-index="1">
@@ -133,14 +130,13 @@
 
     <script>
       const tl = gsap.timeline({ paused: true });
-      const D = 3;
+      const D = 3.75;
 
-      // una toma cada 3 s: deriva lenta dentro del encuadre, corte seco entre tomas
+      // una toma cada 3,75 s: deriva lenta dentro del encuadre, corte seco entre tomas
       tl.fromTo("#img-1", { scale: 1.01 }, { scale: 1.08, y: -14, duration: D, ease: "none" }, 0);
-      tl.fromTo("#img-2", { scale: 1.08, x: 5 }, { scale: 1.01, x: -5, duration: D, ease: "none" }, 3);
-      tl.fromTo("#img-3", { scale: 1.01, x: -6 }, { scale: 1.08, x: 6, duration: D, ease: "none" }, 6);
-      tl.fromTo("#img-4", { scale: 1.09, y: 8 }, { scale: 1.02, y: -8, duration: D, ease: "none" }, 9);
-      tl.fromTo("#img-5", { scale: 1.02 }, { scale: 1.10, duration: D, ease: "none" }, 12);
+      tl.fromTo("#img-2", { scale: 1.08, x: 5 }, { scale: 1.01, x: -5, duration: D, ease: "none" }, 3.75);
+      tl.fromTo("#img-3", { scale: 1.01, x: -6 }, { scale: 1.08, x: 6, duration: D, ease: "none" }, 7.5);
+      tl.fromTo("#img-4", { scale: 1.09, y: 8 }, { scale: 1.02, y: -8, duration: D, ease: "none" }, 11.25);
 
       // la firma entra una vez, al principio
       tl.fromTo("#label .rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 0.25);

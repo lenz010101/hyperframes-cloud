@@ -30,8 +30,8 @@ Fondo blanco, cinco fotos del producto con zoom lento y corte seco, con música.
 
 ## Pendiente
 
-- Decidir si se saca la toma de la placa (6–9 s): es la más débil, tiene una mano
-  y una grieta en la pared. Si se saca, las otras cuatro quedan en 3,75 s.
+- Nada bloqueante. La toma de la placa (la de la mano y la grieta) se **sacó**: quedan
+  cuatro tomas de 3,75 s. Si se quiere recuperar, está en `assets/img/05.jpg`.
 
 ## Cómo se trabaja
 
