@@ -1,151 +1,25 @@
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-    <style>
-      :root {
-        --ground: #ffffff;
-        --ink: #0f1115;
-        --muted: #8b93a1;
-        --hairline: #e8eaee;
-        --font-display: "Inter", sans-serif;
-        --font-mono: "JetBrains Mono", monospace;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        width: 1080px;
-        height: 1920px;
-        overflow: hidden;
-        background: var(--ground);
-      }
-      #stage {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background: var(--ground);
-        font-family: var(--font-display);
-        color: var(--ink);
-      }
-
-      .shot {
-        position: absolute;
-        left: 190px;
-        top: 200px;
-        width: 700px;
-        height: 1400px;
-        border-radius: 26px;
-        overflow: hidden;
-        background: #f4f5f7;
-        box-shadow:
-          0 30px 60px rgba(15, 17, 21, 0.10),
-          0 5px 16px rgba(15, 17, 21, 0.05);
-      }
-      .shot img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transform-origin: 50% 50%;
-      }
-
-      #label {
-        position: absolute;
-        left: 190px;
-        top: 1672px;
-        width: 700px;
-      }
-      #label .rule {
-        width: 700px;
-        height: 1px;
-        background: var(--hairline);
-        margin-bottom: 28px;
-        transform-origin: 0% 50%;
-      }
-      #label .row {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-      }
-      #brand {
-        font-size: 40px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-      }
-      #model {
-        font-family: var(--font-mono);
-        font-size: 28px;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        color: var(--muted);
-      }
-    </style>
-  </head>
-  <body>
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="15"
-      data-width="1080"
-      data-height="1920"
-    >
-      <div id="stage">
-        <div id="shot-1" class="clip" data-start="0" data-duration="3.75" data-track-index="0">
-          <div class="shot"><img id="img-1" src="assets/img/02.jpg" alt="Exprimidor USA MILER de perfil, con la marca y el interruptor" style="object-position: 50% 46%" /></div>
-        </div>
-        <div id="shot-2" class="clip" data-start="3.75" data-duration="3.75" data-track-index="0">
-          <div class="shot"><img id="img-2" src="assets/img/04.jpg" alt="Detalle de la canasta y las copas naranjas" style="object-position: 50% 40%" /></div>
-        </div>
-        <div id="shot-3" class="clip" data-start="7.5" data-duration="3.75" data-track-index="0">
-          <div class="shot"><img id="img-3" src="assets/img/03.jpg" alt="Dos exprimidores sobre la mesa" style="object-position: 50% 42%" /></div>
-        </div>
-        <div id="shot-4" class="clip" data-start="11.25" data-duration="3.75" data-track-index="0">
-          <div class="shot"><img id="img-4" src="assets/img/01.jpg" alt="Exprimidor USA MILER de frente" style="object-position: 50% 46%" /></div>
-        </div>
-
-        <div id="label" class="clip" data-start="0" data-duration="15" data-track-index="1">
-          <div class="rule"></div>
-          <div class="row">
-            <div id="brand">USA MILER</div>
-            <div id="model">EXPRIMIDOR 20205M</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <audio
-      id="music"
-      src="assets/audio/bed.mp3"
-      data-start="0"
-      data-duration="15"
-      data-timeline-role="music"
-    ></audio>
-
-    <script>
-      const tl = gsap.timeline({ paused: true });
-      const D = 3.75;
-
-      // una toma cada 3,75 s: deriva lenta dentro del encuadre, corte seco entre tomas
-      tl.fromTo("#img-1", { scale: 1.01 }, { scale: 1.08, y: -14, duration: D, ease: "none" }, 0);
-      tl.fromTo("#img-2", { scale: 1.08, x: 5 }, { scale: 1.01, x: -5, duration: D, ease: "none" }, 3.75);
-      tl.fromTo("#img-3", { scale: 1.01, x: -6 }, { scale: 1.08, x: 6, duration: D, ease: "none" }, 7.5);
-      tl.fromTo("#img-4", { scale: 1.09, y: 8 }, { scale: 1.02, y: -8, duration: D, ease: "none" }, 11.25);
-
-      // la firma entra una vez, al principio
-      tl.fromTo("#label .rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 0.25);
-      tl.fromTo("#brand", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.45);
-      tl.fromTo("#model", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, 0.6);
-
-      window.__timelines = window.__timelines || {};
-      window.__timelines["main"] = tl;
-      tl.seek(0);
-    </script>
-  </body>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080,height=1920"/>
+<style>
+html,body{width:1080px;height:1920px;margin:0;background:#000;overflow:hidden}
+#stage{position:relative;width:100%;height:100%}
+.shot{position:absolute;inset:0}
+.shot img{width:100%;height:100%;object-fit:cover}
+#subs{position:absolute;bottom:140px;left:0;width:100%;text-align:center;color:#fff;font-family:sans-serif;font-size:72px;font-weight:800;text-shadow:0 4px 30px rgba(0,0,0,0.9);padding:0 80px;box-sizing:border-box}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+<div id="stage">
+<div class="clip" data-start="0" data-duration="3.75" data-track-index="0"><div class="shot"><img src="assets/img/01.jpg"/></div></div>
+<div class="clip" data-start="3.75" data-duration="3.75" data-track-index="0"><div class="shot"><img src="assets/img/02.jpg"/></div></div>
+<div class="clip" data-start="7.5" data-duration="3.75" data-track-index="0"><div class="shot"><img src="assets/img/03.jpg"/></div></div>
+<div class="clip" data-start="11.25" data-duration="3.75" data-track-index="0"><div class="shot"><img src="assets/img/04.jpg"/></div></div>
+<div id="subs" class="clip" data-start="0" data-duration="15" data-track-index="1">Subtítulos automáticos en español</div>
+</div>
+</div>
+</body>
 </html>
