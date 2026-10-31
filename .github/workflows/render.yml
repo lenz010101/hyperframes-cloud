@@ -57,6 +57,17 @@ jobs:
             sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           fi
 
+      - name: Extract frames from target video
+        shell: bash
+        run: |
+          mkdir -p assets/img
+          if [ -f assets/videos/target.mp4 ]; then
+            ffmpeg -y -i assets/videos/target.mp4 -vf "select=eq(n\,0)" -vsync vfr assets/img/01.jpg
+            ffmpeg -y -i assets/videos/target.mp4 -vf "select=eq(n\,1)" -vsync vfr assets/img/02.jpg
+            ffmpeg -y -i assets/videos/target.mp4 -vf "select=eq(n\,2)" -vsync vfr assets/img/03.jpg
+            ffmpeg -y -i assets/videos/target.mp4 -vf "select=eq(n\,3)" -vsync vfr assets/img/04.jpg
+          fi
+
       - name: Ensure Chrome
         run: $HF browser ensure
 
