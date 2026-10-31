@@ -1,0 +1,28 @@
+name: FFmpeg Edit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/videos/target.mp4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Process video
+        run: |
+          mkdir -p out
+          ffmpeg -y -i assets/videos/target.mp4 -vf "drawtext=text='Subtítulos automáticos':fontcolor=white:fontsize=72:box=1:boxcolor=black@0.5:boxborderw=10:x=(w-text_w)/2:y=h-150" -c:a copy out/video_edited.mp4
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: video
+          path: out/video_edited.mp4
