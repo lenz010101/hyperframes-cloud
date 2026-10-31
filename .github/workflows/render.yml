@@ -1,5 +1,4 @@
 name: Render
-
 on:
   push:
     branches: [main]
@@ -42,22 +41,16 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Cache npm
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: hf-npm-${{ hashFiles('package.json', '.github/workflows/render.yml') }}
-
       - name: Ensure FFmpeg
         shell: bash
         run: |
           if command -v ffmpeg >/dev/null 2>&1 && command -v ffprobe >/dev/null 2>&1; then
-            echo "ffmpeg ya viene en el runner: $(ffmpeg -version | head -1)"
+            echo "ffmpeg ya viene en el runner"
           else
             sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           fi
 
-      - name: Extract frames from target video
+      - name: Extract frames and audio
         shell: bash
         run: |
           mkdir -p assets/img
@@ -66,6 +59,7 @@ jobs:
             ffmpeg -y -i assets/videos/target.mp4 -vf "select=eq(n\,1)" -vsync vfr assets/img/02.jpg
             ffmpeg -y -i assets/videos/target.mp4 -vf "select=eq(n\,2)" -vsync vfr assets/img/03.jpg
             ffmpeg -y -i assets/videos/target.mp4 -vf "select=eq(n\,3)" -vsync vfr assets/img/04.jpg
+            ffmpeg -y -i assets/videos/target.mp4 -vn -acodec copy assets/audio/target_audio.m4a || true
           fi
 
       - name: Ensure Chrome
@@ -77,28 +71,11 @@ jobs:
           set -o pipefail
           $HF check --json | tee check.json
 
-      - name: Snapshots
-        if: always()
-        shell: bash
-        run: |
-          $HF snapshot --at "${{ inputs.frames || '0.5,1.5,4.5,7.5,10.5,13.5' }}" || true
-
       - name: Render
         shell: bash
         run: |
           mkdir -p out
           $HF render --quality "${{ inputs.quality || 'looks' }}" --output out/video.mp4
-
-      - name: Upload frames
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: frames
-          path: |
-            .hyperframes/artifacts/snapshots/
-            check.json
-          if-no-files-found: ignore
-          retention-days: 14
 
       - name: Upload video
         uses: actions/upload-artifact@v4
@@ -106,14 +83,3 @@ jobs:
           name: video
           path: out/video.mp4
           retention-days: 14
-
-      - name: Publish latest release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          gh release delete latest --yes --cleanup-tag 2>/dev/null || true
-          gh release create latest out/video.mp4 \
-            --title "Último render" \
-            --notes "Generado automáticamente desde ${GITHUB_SHA:0:7}."
